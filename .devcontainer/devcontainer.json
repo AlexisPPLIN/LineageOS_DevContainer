@@ -1,0 +1,31 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/php
+{
+	"name": "LineageOS",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"build": {
+        // Path is relataive to the devcontainer.json file.
+        "dockerfile": "Dockerfile"
+    },
+
+    // Configure tool-specific properties.
+	"customizations": {
+        "vscode": {
+            "extensions": [
+                "mhutchie.git-graph"
+            ]
+        }
+    },
+
+    "mounts": [
+        "type=volume,src=ccache,dst=/ccache",
+        "type=bind,src=/dev/bus/usb,dst=/dev/bus/usb"
+    ],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "sudo chown -R vscode:vscode /ccache",
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "vscode",
+    "runArgs": ["--privileged"]
+}
